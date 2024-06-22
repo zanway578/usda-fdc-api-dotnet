@@ -44,7 +44,7 @@ namespace Usda.Fdc.Api.Models
         public string? BrandedFoodCategory { get; set; }
 
         [JsonConverterAttribute(typeof(FdcEnumConverterFactory))]
-        public FdcTradeChannel[] TradeChannel { get; set; } = [];
+        public IEnumerable<FdcTradeChannel> TradeChannel { get; set; } = [];
 
         public int? GpcClasCode { get; set; }
 

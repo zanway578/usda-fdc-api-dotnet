@@ -7,6 +7,8 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Usda.Fdc.Api.Lib.Converters.Enumerable;
+using Usda.Fdc.Api.Lib.Converters.Single;
 using Usda.Fdc.Api.Models.Enums;
 
 namespace Usda.Fdc.Api.Lib.Converters
@@ -17,8 +19,8 @@ namespace Usda.Fdc.Api.Lib.Converters
         {
             var enumerableTypes = new Type[] { 
                 typeof(FdcDataType), 
-                typeof(FdcSortBy), 
-                typeof(FdcSortOrder), 
+                //typeof(FdcSortBy), 
+                //typeof(FdcSortOrder), 
                 typeof(FdcTradeChannel) };
 
             var isEnumerable = typeof(IEnumerable).IsAssignableFrom(typeToConvert);
@@ -70,12 +72,31 @@ namespace Usda.Fdc.Api.Lib.Converters
             }
             else if (CanConvertToEnumerableInterface(typeToConvert))
             {
-                return new FdcEnumerableConverter();
+                return CreateEnumerableConverter(typeToConvert);
             }
             else
             {
                 throw new NotSupportedException("Type passed to converter factory that cannot be converted.");
             }
+        }
+
+        private JsonConverter CreateEnumerableConverter(Type typeToConvert)
+        {
+            var internalType = typeToConvert.GetGenericArguments()[0];
+
+            if (internalType == typeof(FdcDataType))
+            {
+                return new FdcDataTypeEnumerableConverter();
+            }
+            else if (internalType == typeof(FdcTradeChannel))
+            {
+                return new FdcTradeChannelEnumerableConverter();
+            }
+            else
+            {
+                throw new NotSupportedException("Type passed to converter factory that cannot be converted");
+            }
+            
         }
     }
 }

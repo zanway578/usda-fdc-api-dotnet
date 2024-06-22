@@ -23,10 +23,10 @@ namespace Usda.Fdc.Api.Models
         public int PageNumber { get; set; }
 
         [JsonConverterAttribute(typeof(FdcEnumConverterFactory))]
-        public FdcSortBy SortBy { get; set; }
+        public FdcSortBy? SortBy { get; set; }
 
         [JsonConverterAttribute(typeof(FdcEnumConverterFactory))]
-        public FdcSortOrder SortOrder { get; set; }
+        public FdcSortOrder? SortOrder { get; set; }
 
         public string? BrandOwner { get; set; }
 
