@@ -32,7 +32,7 @@ namespace Usda.Fdc.Api.Models
 
         public string? Ingredients { get; set; }
 
-        public string? NdbNumber { get; set; }
+        public int? NdbNumber { get; set; }
 
         public string? AdditionalDescriptions { get; set; }
 

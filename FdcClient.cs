@@ -1,9 +1,17 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections.Specialized;
+using System.Net.Http.Json;
+using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Web;
+using Usda.Fdc.Api.Models;
+using Usda.Fdc.Api.Models.Enums;
 
 namespace Usda.Fdc.Api
 {
     public class FdcClient
     {
+        private static string MainUrl = "https://api.nal.usda.gov/fdc";
+
         public static string? GlobalApiKey { private get; set; }
 
         private string _apiKey;
@@ -45,12 +53,43 @@ namespace Usda.Fdc.Api
         /// <param name="sortOrder"></param>
         /// <param name="brandOwner"></param>
         /// <returns></returns>
-        public List<object> SearchFoods(string search, IEnumerable<string>? dataType = null,
+        public List<object> SearchFoods(string search, IEnumerable<FdcDataType>? dataType = null,
             int? pageNumber = null, int? pageSize = null, string? sortBy = null, string? sortOrder = null,
             string? brandOwner = null)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Uses POST /v1/foods/search end point to retrieve search result.
+        /// </summary>
+        /// <param name="searchCriteria">Object containing critiera used to perform search.</param>
+        /// <returns>Entries that match search criteria.</returns>
+        public async Task<SearchResult> SearchFoods(FoodSearchCriteria searchCriteria)
+        {
+            var query = BuildStarterQueryString();
+
+            var endpoint = $"{MainUrl}/v1/foods/search?{query}";
+
+            var response = await _httpClient.PostAsJsonAsync(endpoint, searchCriteria);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"API call failed with status {response.StatusCode}");
+            }
+
+            var content = await response.Content.ReadFromJsonAsync(typeof(SearchResult));
+
+            return (SearchResult)content;
+        }
+
+        private NameValueCollection BuildStarterQueryString()
+        {
+            var query = HttpUtility.ParseQueryString(string.Empty);
+
+            query["api_key"] = _apiKey;
+
+            return query;
+        }
     }
 }
