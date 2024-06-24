@@ -12,7 +12,7 @@ namespace Usda.Fdc.Api.Models
     public class FoodListCriteria
     {
         [JsonConverterAttribute(typeof(FdcEnumConverterFactory))]
-        public FdcDataType[] DataType { get; set; } = [];
+        public IEnumerable<FdcDataType> DataType { get; set; } = [];
 
         public int? PageSize  { get; set; }
 

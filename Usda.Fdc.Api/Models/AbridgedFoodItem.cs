@@ -12,16 +12,19 @@ namespace Usda.Fdc.Api.Models
     public class AbridgedFoodItem
     {
         [JsonConverterAttribute(typeof(FdcEnumConverterFactory))]
+        [JsonRequired]
         public FdcDataType DataType { get; set; }
 
         /// <summary>
         /// Example: NUT 'N BERRY MIX
         /// </summary>
+        [JsonRequired]
         public string Description { get; set; } = null!;
 
+        [JsonRequired]
         public int FdcId { get; set; }
 
-        public BrandedFoodItem[] FoodNutrients { get; set; } = [];
+        public IEnumerable<AbridgedFoodNutrient> FoodNutrients { get; set; } = [];
 
         public DateOnly? PublicationDate { get; set; }
 

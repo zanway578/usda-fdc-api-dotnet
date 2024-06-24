@@ -8,13 +8,13 @@ namespace Usda.Fdc.Api.Models
 {
     public class AbridgedFoodNutrient
     {
-        public uint? Number { get; set; }
+        public string Number { get; set; } = null!;
 
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public float? Amount { get; set; }
+        public float Amount { get; set; }
 
-        public string? UnitName { get; set; }
+        public string UnitName { get; set; } = null!;
 
         public string? DerivationCode { get; set; }
 

@@ -18,9 +18,7 @@ namespace Usda.Fdc.Api.Lib.Converters
         private bool CanConvertToEnumerableInterface(Type typeToConvert)
         {
             var enumerableTypes = new Type[] { 
-                typeof(FdcDataType), 
-                //typeof(FdcSortBy), 
-                //typeof(FdcSortOrder), 
+                typeof(FdcDataType),  
                 typeof(FdcTradeChannel) };
 
             var isEnumerable = typeof(IEnumerable).IsAssignableFrom(typeToConvert);
@@ -49,6 +47,7 @@ namespace Usda.Fdc.Api.Lib.Converters
                 typeToConvert == typeof(FdcSortOrder) ||
                 typeToConvert == typeof(FdcDataType) ||
                 typeToConvert == typeof(FdcTradeChannel) ||
+                typeToConvert == typeof(FdcFormat) ||
                 CanConvertToEnumerableInterface(typeToConvert);
         }
 
@@ -57,6 +56,10 @@ namespace Usda.Fdc.Api.Lib.Converters
             if (typeToConvert == typeof(FdcDataType))
             {
                 return new FdcDataTypeConverter();
+            }
+            else if (typeToConvert == typeof(FdcFormat))
+            {
+                return new FdcFormatConverter();
             }
             else if (typeToConvert == typeof(FdcSortBy))
             {
