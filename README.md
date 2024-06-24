@@ -1,5 +1,5 @@
 # USDA FDC API Wrapper for .NET
-
+![Build status](https://img.shields.io/github/actions/workflow/status/zanway578/usda-fdc-api-dotnet/dotnet.yml?branch=main)
 ## Purpose
 The USDA FDC API ([Swaggerhub docs](https://app.swaggerhub.com/apis/fdcnal/food-data_central_api/1.0.1)) is a great resource for finding information on food, including how it's been lab tested and it's nutritional information. There is the option on the swaggerhub page to download client libraries for a variety of languages. While convenient, I found several issues with the C# one:
 1. The generated code is messy and calling API endpoints is unintuitive.
