@@ -10,8 +10,8 @@ The USDA FDC API ([Swaggerhub docs](https://app.swaggerhub.com/apis/fdcnal/food-
 Hence, I present an API wrapper that is much easier to use, with the following features:
 1. A single API client class `FdcClient` used to contact the API end point.
 2. Ability to inject as a singleton instance in any .NET API/Service/Razor/Etc. application.
-3. Enumeration types supplied with custom JsonConverters to help with serializing/deserializing JSON.
-4. Zero depedencies - written using only System libraries. 
+3. Enumeration types supplied with custom JsonConverters to handle serializing/deserializing JSON.
+4. Zero library dependencies - written using only System libraries. 
 
 ## How to Integrate into Application
 1. Clone respository.
