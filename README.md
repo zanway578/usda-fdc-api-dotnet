@@ -19,7 +19,7 @@ Hence, I present an API wrapper that is much easier to use, with the following f
 
 ## Simple Example
 Here's a very basic use of the API client to illustrate how it works:
-``` c-sharp
+``` csharp
 using Usda.Fdc.Api;
 using Usda.Fdc.Api.Models;
 using Usda.Fdc.Api.Models.Enums;
