@@ -1,9 +1,9 @@
 # USDA FDC API Wrapper for .NET
 ![Build status](https://img.shields.io/github/actions/workflow/status/zanway578/usda-fdc-api-dotnet/dotnet.yml?branch=main)
 ## Purpose
-The USDA FDC API ([Swaggerhub docs](https://app.swaggerhub.com/apis/fdcnal/food-data_central_api/1.0.1)) is a great resource for finding information on food, including how it's been lab tested and it's nutritional information. There is the option on the swaggerhub page to download client libraries for a variety of languages. While convenient, I found several issues with the C# one:
+The USDA FDC API ([Swaggerhub docs](https://app.swaggerhub.com/apis/fdcnal/food-data_central_api/1.0.1)) is a great resource for finding information on food, including how it's been lab tested and its nutritional information. There is the option on the Swagger Hub page to download client libraries for a variety of languages. While convenient, I found several issues with the C# one:
 1. The generated code is messy and calling API endpoints is unintuitive.
-2. Lack of enumeration types. Many of the endpoints call for strings that have a fixed number of options (e.g. SortBy, SortOrder, DataType, etc.). As a lover of strong static typing, I didn't like this and wished there was code included to allow for enum types.
+2. Lack of enumeration types. Many of the endpoints call for strings that have a fixed number of options (e.g. SortBy, SortOrder, DataType, etc.). As a lover of strong, static typing, I didn't like this and wished the code used enum types.
 3. Lots of pointers floating around in the generated code. I like to avoid pointers in C# unless necessary.
 4. If there are any bugs in the generated code, it will be a mess to debug.
 
