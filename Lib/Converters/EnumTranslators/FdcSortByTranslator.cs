@@ -9,41 +9,37 @@ namespace Usda.Fdc.Api.Lib.Converters.EnumTranslators
 {
     internal class FdcSortByTranslator
     {
+        private static Dictionary<string, FdcSortBy> _strToEnum = new() {
+            { "dataType.keyword", FdcSortBy.DataType },
+            { "fdcId", FdcSortBy.FdcId },
+            { "lowercaseDescription.keyword", FdcSortBy.LowercaseDescription },
+            { "publishedDate", FdcSortBy.PublishedDate }
+        };
 
-        internal string FromEnum(FdcSortBy value)
-        {
-            var castedValue = (FdcSortBy)value;
-
-            switch (castedValue)
-            {
-                case FdcSortBy.DataType:
-                    return "dataType.keyword";
-                case FdcSortBy.LowercaseDescription:
-                    return "lowercaseDescription.keyword";
-                case FdcSortBy.FdcId:
-                    return "fdcId";
-                case FdcSortBy.PublishedDate:
-                    return "publishedDate";
-                default:
-                    throw new NotSupportedException($"No str value defined for SortBy enum '{castedValue}'");
-            }
-        }
+        private static Dictionary<FdcSortBy, string> _enumToStr = _strToEnum
+            .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
 
         internal FdcSortBy ToEnum(string value)
         {
-            switch (value)
+            try
             {
-                case "dataType.keyword":
-                    return FdcSortBy.DataType;
-                case "lowercaseDescription.keyword":
-                    return FdcSortBy.LowercaseDescription;
-                case "fdcId":
-                    return FdcSortBy.FdcId;
-                case "publishedDate":
-                    return FdcSortBy.PublishedDate;
-                default:
-                    throw new NotSupportedException($"No enum value defined for SortBy string '{value}'");
-                    throw new NotSupportedException($"No enum value defined for SortBy string '{value}'");
+                return _strToEnum[value];
+            }
+            catch
+            {
+                throw new NotSupportedException($"No enum value defined for SortBy string '{value}'");
+            }
+        }
+
+        internal string FromEnum(FdcSortBy value)
+        {
+            try
+            {
+                return _enumToStr[value];
+            }
+            catch
+            {
+                throw new NotSupportedException($"No str value defined for SortBy enum '{value}'");
             }
         }
     }

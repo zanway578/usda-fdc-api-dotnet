@@ -43,6 +43,6 @@ namespace Usda.Fdc.Api.Models
         /// <summary>
         /// Only applies to Survey Foods
         /// </summary>
-        public string? FoodCode { get; set; }
+        public int? FoodCode { get; set; }
     }
 }

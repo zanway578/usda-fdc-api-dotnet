@@ -18,7 +18,7 @@ namespace Usda.Fdc.Api.Models
 
         public string Description { get; set; } = null!;
 
-        public string? FoodCode { get; set; }
+        public int? FoodCode { get; set; }
 
         public AbridgedFoodNutrient? AbridgedFoodNutrient { get; set; }
 

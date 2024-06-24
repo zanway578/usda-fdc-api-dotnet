@@ -10,6 +10,7 @@ namespace Usda.Fdc.Api.Models.Enums
     {
         Branded,
         Foundation,
+        Experimental,
         Survey,
         SrLegacy
     }

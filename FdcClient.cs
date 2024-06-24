@@ -3,6 +3,8 @@ using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Web;
+using Usda.Fdc.Api.Lib.Converters.EnumTranslators;
+using Usda.Fdc.Api.Lib.Converters.Single;
 using Usda.Fdc.Api.Models;
 using Usda.Fdc.Api.Models.Enums;
 
@@ -43,21 +45,66 @@ namespace Usda.Fdc.Api
             _httpClient = client;
         }
         /// <summary>
-        /// Uses GET /foods/search end point to return a list of food options 
+        /// Uses GET /v1/foods/search end point to return a list of food options 
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="search">Search query</param>
         /// <param name="dataType"></param>
-        /// <param name="pageNumber"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="sortBy"></param>
+        /// <param name="pageNumber">Page number of results you want</param>
+        /// <param name="pageSize">Size of results page</param>
+        /// <param name="sortBy">Criteria to sort by</param>
         /// <param name="sortOrder"></param>
         /// <param name="brandOwner"></param>
         /// <returns></returns>
-        public List<object> SearchFoods(string search, IEnumerable<FdcDataType>? dataType = null,
-            int? pageNumber = null, int? pageSize = null, string? sortBy = null, string? sortOrder = null,
+        public async Task<SearchResult> SearchFoods(string search, IEnumerable<FdcDataType>? dataType = null,
+            int? pageNumber = null, int? pageSize = null, FdcSortBy? sortBy = null, FdcSortOrder? sortOrder = null,
             string? brandOwner = null)
         {
-            throw new NotImplementedException();
+            var query = BuildStarterQueryString();
+
+            if (dataType != null)
+            {
+                var translator = new FdcDataTypeTranslator();
+
+                query["dataType"] = string.Join(",", dataType
+                    .Select(t => translator.FromEnum(t)));
+            }
+            if (pageNumber != null)
+            {
+                query["pageNumber"] = pageNumber.Value.ToString();
+            }
+            if (pageSize != null)
+            {
+                query["pageSize"] = pageSize.Value.ToString();
+            }
+            if (sortBy != null)
+            {
+                var translator = new FdcSortByTranslator();
+
+                query["sortBy"] = translator.FromEnum(sortBy.Value);
+            }
+            if (sortOrder != null)
+            {
+                var translator = new FdcSortOrderTranslator();
+
+                query["sortOrder"] = translator.FromEnum(sortOrder.Value);
+            }
+            if (brandOwner != null)
+            {
+                query["brandOwner"] = brandOwner;
+            }
+
+            var endpoint = $"{MainUrl}/v1/foods/search?{query}";
+
+            var response = await _httpClient.GetAsync(endpoint);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"API call failed with status {response.StatusCode}");
+            }
+
+            var content = await response.Content.ReadFromJsonAsync(typeof(SearchResult));
+
+            return (SearchResult)content;
         }
 
         /// <summary>

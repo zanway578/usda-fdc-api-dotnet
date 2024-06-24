@@ -22,7 +22,7 @@ namespace Usda.Fdc.Api.Models
 
         public string? FoodClass { get; set; }
 
-        public string? FoodCode { get; set; }
+        public int? FoodCode { get; set; }
 
         public DateOnly? PublicationDate { get; set; }
 

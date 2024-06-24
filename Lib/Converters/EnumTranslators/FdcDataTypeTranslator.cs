@@ -9,46 +9,39 @@ namespace Usda.Fdc.Api.Lib.Converters.EnumTranslators
 {
     internal class FdcDataTypeTranslator
     {
+        private static readonly Dictionary<string, FdcDataType> _strToEnum = new() {
+            { "Branded", FdcDataType.Branded },
+            { "Foundation", FdcDataType.Foundation },
+            { "Experimental", FdcDataType.Experimental },
+            { "SR Legacy", FdcDataType.SrLegacy },
+            { "Survey (FNDDS)", FdcDataType.Survey }
+        };
+
+        private static readonly Dictionary<FdcDataType, string> _enumToStr = _strToEnum
+            .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
+
         internal FdcDataType ToEnum(string value)
         {
-            switch (value)
+            try
             {
-                case "Branded":
-                    return FdcDataType.Branded;
-                case "Foundation":
-                    return FdcDataType.Foundation;
-                case "Survey (FNDDS)":
-                    return FdcDataType.Survey;
-                case "SR Legacy":
-                    return FdcDataType.SrLegacy;
-                default:
-                    throw new NotSupportedException($"No enum value defined for DataType string '{value}'");
+                return _strToEnum[value];
+            }
+            catch
+            {
+                throw new NotSupportedException($"No enum value defined for DataType string '{value}'");
             }
         }
 
         internal string FromEnum(FdcDataType value)
         {
-            string? strValue = null;
-
-            switch (value)
+            try
             {
-                case FdcDataType.Branded:
-                    strValue = "Branded";
-                    break;
-                case FdcDataType.Foundation:
-                    strValue = "Foundation";
-                    break;
-                case FdcDataType.Survey:
-                    strValue = "Survey (FNDDS)";
-                    break;
-                case FdcDataType.SrLegacy:
-                    strValue = "SR Legacy";
-                    break;
-                default:
-                    throw new NotSupportedException($"No str value defined for DataType enum '{value}'");
+                return _enumToStr[value];
             }
-
-            return strValue;
+            catch
+            {
+                throw new NotSupportedException($"No str value defined for DataType enum '{value}'");
+            }
         }
     }
 }

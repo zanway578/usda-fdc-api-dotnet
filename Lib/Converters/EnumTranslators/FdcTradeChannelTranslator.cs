@@ -9,53 +9,42 @@ namespace Usda.Fdc.Api.Lib.Converters.EnumTranslators
 {
     internal class FdcTradeChannelTranslator
     {
+        private static readonly Dictionary<string, FdcTradeChannel> _strToEnum = new()
+        {
+            { "CHILD_NUTRITION_FOOD_PROGRAMS", FdcTradeChannel.ChildNutritionFoodPrograms },
+            { "DRUG", FdcTradeChannel.Drug },
+            { "FOOD_SERVICE", FdcTradeChannel.FoodService },
+            { "GROCERY", FdcTradeChannel.Grocery },
+            { "MASS_MERCHANDISING", FdcTradeChannel.MassMerchandising },
+            { "MILITARY", FdcTradeChannel.Military },
+            { "ONLINE", FdcTradeChannel.Online },
+            { "VENDING", FdcTradeChannel.Vending }
+        };
+
+        private static readonly Dictionary<FdcTradeChannel, string> _enumToStr = _strToEnum
+            .ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
+
         internal string FromEnum(FdcTradeChannel value)
         {
-            switch (value)
+            try
             {
-                case FdcTradeChannel.ChildNutritionFoodPrograms:
-                    return"CHILD_NUTRITION_FOOD_PROGRAMS";
-                case FdcTradeChannel.Drug:
-                    return "DRUG";
-                case FdcTradeChannel.FoodService:
-                    return "FOOD_SERVICE";
-                case FdcTradeChannel.Grocery:
-                    return "GROCERY";
-                case FdcTradeChannel.MassMerchandising:
-                    return "MASS_MERCHANDISING";
-                case FdcTradeChannel.Military:
-                    return "MILITARY";
-                case FdcTradeChannel.Online:
-                    return "ONLINE";
-                case FdcTradeChannel.Vending:
-                    return "VENDING";
-                default:
-                    throw new NotSupportedException($"No str value defined for TradeChannel enum '{value}'");
+                return _enumToStr[value];
+            }
+            catch
+            {
+                throw new NotSupportedException($"No str value defined for TradeChannel enum '{value}'");
             }
         }
 
         internal FdcTradeChannel ToEnum(string value)
         {
-            switch (value)
+            try
             {
-                case "CHILD_NUTRITION_FOOD_PROGRAMS":
-                    return FdcTradeChannel.ChildNutritionFoodPrograms;
-                case "DRUG":
-                    return FdcTradeChannel.Drug;
-                case "FOOD_SERVICE":
-                    return FdcTradeChannel.FoodService;
-                case "GROCERY":
-                    return FdcTradeChannel.Grocery;
-                case "MASS_MERCHANDISING":
-                    return FdcTradeChannel.MassMerchandising;
-                case "MILITARY":
-                    return FdcTradeChannel.Military;
-                case "ONLINE":
-                    return FdcTradeChannel.Online;
-                case "VENDING":
-                    return FdcTradeChannel.Vending;
-                default:
-                    throw new NotSupportedException($"No enum value defined for TradeChannel string '{value}'");
+                return _strToEnum[value];
+            }
+            catch
+            {
+                throw new NotSupportedException($"No enum value defined for TradeChannel string '{value}'");
             }
         }
     }
