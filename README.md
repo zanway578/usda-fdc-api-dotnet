@@ -29,7 +29,7 @@ FdcClient.GlobalApiKey = "{YOUR API KEY}";
 // Must inject HTTP client as a dependency
 var client = new HttpClient();
 
-// Create objecrt containing criteria for foods we want to search
+// Create object containing criteria for foods we want to search
 var listCriteria = new FoodListCriteria()
 {
     DataType = new[] { FdcDataType.Foundation },
