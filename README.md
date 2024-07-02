@@ -13,6 +13,9 @@ Hence, I present an API wrapper that is much easier to use, with the following f
 3. Enumeration types supplied with custom JsonConverters to handle serializing/deserializing JSON.
 4. Zero library dependencies - written using only System libraries. 
 
+## Depedencies
+You will need to install the [USDA FDC API Wrapper](https://github.com/zanway578/usda-fdc-api-dotnet) and either reference the .csproj file or the compiled DLL.
+
 ## How to Integrate into Application
 1. Clone respository.
 2. Either build and add .dll as a reference or add the .csproj file as a project reference in Visual Studio.
