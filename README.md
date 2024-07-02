@@ -14,7 +14,7 @@ Hence, I present an API wrapper that is much easier to use, with the following f
 4. Zero library dependencies - written using only System libraries. 
 
 ## How to Integrate into Application
-Either download as a [Nuget Package]([Nuget](https://www.nuget.org/packages/Zanway578.Usda.Fdc.Api/1.0.0))  
+Either download as a [Nuget Package](https://www.nuget.org/packages/Zanway578.Usda.Fdc.Api/1.0.0)  
 OR
 1. Clone respository.
 2. Either build and add .dll as a reference or add the .csproj file as a project reference in Visual Studio.
