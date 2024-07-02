@@ -14,7 +14,7 @@ Hence, I present an API wrapper that is much easier to use, with the following f
 4. Zero library dependencies - written using only System libraries. 
 
 ## Depedencies
-You will need to install the [USDA FDC API Wrapper](https://github.com/zanway578/usda-fdc-api-dotnet) and either reference the .csproj file or the compiled DLL.
+You will need to install as from [Nuget](https://www.nuget.org/packages/Zanway578.Usda.Fdc.Api/1.0.0) or [Source](https://github.com/zanway578/usda-fdc-api-dotnet). If downloading from source, you can either reference the .csproj file or compile and reference the DLL.
 
 ## How to Integrate into Application
 1. Clone respository.
