@@ -41,11 +41,11 @@ namespace Usda.Fdc.Api.Models
         /// <summary>
         /// Only applies to Foundation and SRLegacy Foods.
         /// </summary>
-        public int? NdbNumber { get; set; }
+        public string? NdbNumber { get; set; }
 
         /// <summary>
         /// Only applies to Survey Foods
         /// </summary>
-        public int? FoodCode { get; set; }
+        public object? FoodCode { get; set; }
     }
 }

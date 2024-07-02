@@ -24,7 +24,7 @@ namespace Usda.Fdc.Api.Models
 
         public bool? IsHistoricalReference { get; set; }
 
-        public int NdbNumber { get; set; }
+        public string NdbNumber { get; set; } = null!;
 
         public DateOnly? PublicationDate { get; set; }
 

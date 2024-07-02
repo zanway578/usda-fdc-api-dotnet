@@ -4,6 +4,23 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>Zachary Anway</Authors>
+    <Company />
+    <Description>C# wrapper for the USDA FDC API.</Description>
+    <PackageProjectUrl>https://github.com/zanway578/usda-fdc-api-dotnet</PackageProjectUrl>
+    <PackageId>Zanway578.$(AssemblyName)</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
